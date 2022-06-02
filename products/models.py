@@ -29,5 +29,9 @@ class Cliente(models.Model):
     nombre = models.CharField(max_length=30)
     dni = models.CharField(max_length=30, unique=True)
 
+    class Meta:
+        verbose_name = 'cliente'
+        verbose_name_plural = 'clientes'
+
     def __str__(self):
         return self.nombre

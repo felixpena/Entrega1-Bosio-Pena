@@ -2,8 +2,8 @@ from unicodedata import name
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from products.models import Products
-from products.forms import Product_form
+from products.models import Products, Categoria, Cliente
+from products.forms import Product_form, Categoria_form, Cliente_form
 
 # Create your views here.
 def products(request):
@@ -39,3 +39,39 @@ def search_product_view(request):
     products = Products.objects.filter(name__contains = request.GET['search'])
     context = {'products':products}
     return render(request, 'search_product.html', context = context)
+
+
+def create_categoria_view(request):
+    if request.method == 'GET':
+        form = Categoria_form()
+        context = {'form':form}
+        return render(request, 'create_categoria.html', context=context)
+    else:
+        form = Categoria_form(request.POST)
+        if form.is_valid():
+            new_categoria = Categoria.objects.create(
+                name = form.cleaned_data['name'],
+
+                description = form.cleaned_data['description'],
+
+            )
+            context ={'new_categoria':new_categoria}
+        return render(request, 'create_categoria.html', context=context)
+
+
+def create_cliente_view(request):
+    if request.method == 'GET':
+        form = Cliente_form()
+        context = {'form':form}
+        return render(request, 'create_cliente.html', context=context)
+    else:
+        form = Cliente_form(request.POST)
+        if form.is_valid():
+            new_cliente = Cliente.objects.create(
+                nombre = form.cleaned_data['nombre'],
+
+                dni = form.cleaned_data['dni'],
+                
+            )
+            context ={'new_cliente':new_cliente}
+        return render(request, 'create_cliente.html', context=context)
