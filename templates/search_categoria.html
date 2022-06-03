@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Productos
+{% endblock %}
+
+{% block contenido %}
+<h1>Aca va el contenido de buscar categoria</h1>
+
+    {% for categoria in categoria %}
+
+    <h2>{{categoria.name}}</h2>
+    <h3>{{categoria.description}}</h3>
+
+
+    {% endfor %}
+
+
+{% endblock %}

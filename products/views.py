@@ -1,4 +1,4 @@
-from unicodedata import name
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -75,3 +75,16 @@ def create_cliente_view(request):
             )
             context ={'new_cliente':new_cliente}
         return render(request, 'create_cliente.html', context=context)
+
+
+# desarrollo buscador Categoria y Cliente:
+
+
+def search_categoria_view(request):
+    print(request.GET)
+    #categoria = Categoria.objects.get()
+    categoria = Categoria.objects.filter(name__contains = request.GET['search'])
+    context = {'categoria':categoria}
+    return render(request, 'search_categoria.html', context = context)
+
+
