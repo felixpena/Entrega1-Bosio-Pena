@@ -1,4 +1,4 @@
-## entrega1-bosio-pena
+## entrega1-bosio-pena-araya
 El proyecto es un trabajo academico de un ecommerce para supermercado, no está terminado sigue en desarrollo. Construido con Django.
 
 - [X] 1. Herencia de HTML  :tada:
